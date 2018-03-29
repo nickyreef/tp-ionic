@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { HttpClient } from '@angular/common/http';
+import { LoadingController } from 'ionic-angular';
 
 /**
  * Generated class for the ListPage page.
@@ -19,7 +20,7 @@ export class ListPage {
 
   jobs = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public httpClient: HttpClient) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public httpClient: HttpClient, public loadingContoller: LoadingController) {
     this.jobs = [];
     this.fetchJobs();
   }
@@ -29,7 +30,14 @@ export class ListPage {
   }
 
   fetchJobs(){
-    this.httpClient.get('https://mobile-api-jobs.herokuapp.com/api/jobs').subscribe((data: any[]) => this.jobs = data);
+    let loading = this.loadingContoller.create({
+      content: 'Patientez...'
+    });
+    loading.present();
+    this.httpClient.get('https://mobile-api-jobs.herokuapp.com/api/jobs').subscribe((data: any[]) => {
+      loading.dismiss();
+      this.jobs = data
+    });
   }
 
 }
