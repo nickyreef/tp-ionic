@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { HttpClient } from '@angular/common/http';
 import { LoadingController } from 'ionic-angular';
+import { MapPage } from '../map/map'
 
 /**
  * Generated class for the ListPage page.
@@ -38,6 +39,11 @@ export class ListPage {
       loading.dismiss();
       this.jobs = data
     });
+  }
+
+  itemSelected(item: string) {
+    console.log("Selected Item", item);
+    this.navCtrl.push(MapPage,item)
   }
 
 }

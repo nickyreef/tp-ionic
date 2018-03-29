@@ -24,17 +24,34 @@ export class MapPage {
   private jobs;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public httpClient: HttpClient, public loadingContoller: LoadingController, private geolocation: Geolocation) {
+    
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MapPage');
     this.fetchJobs();
-    this.geolocation.getCurrentPosition().then(resp => {
+    // this.geolocation.getCurrentPosition().then(resp => {
+    //   this.lat = resp.coords.latitude;
+    //   this.lng = resp.coords.longitude;
+    // }).catch((error) => {
+    //   console.log('Error getting location', error);
+    // });
+  }
+
+  ionViewWillEnter(){
+    console.log(this.navParams);
+    if(this.navParams.data.id){
+      this.lat = Number(this.navParams.data.latitude);
+      this.lng = Number(this.navParams.data.longitude); 
+    } else {
+      this.geolocation.getCurrentPosition().then(resp => {
       this.lat = resp.coords.latitude;
       this.lng = resp.coords.longitude;
-    }).catch((error) => {
-      console.log('Error getting location', error);
-    });
+      }).catch((error) => {
+        console.log('Error getting location', error);
+      });
+    }
+    
   }
 
   fetchJobs(){
