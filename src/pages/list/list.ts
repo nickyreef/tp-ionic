@@ -22,11 +22,11 @@ export class ListPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public httpClient: HttpClient, public loadingContoller: LoadingController) {
     this.jobs = [];
-    this.fetchJobs();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ListPage');
+    this.fetchJobs();
   }
 
   fetchJobs(){
