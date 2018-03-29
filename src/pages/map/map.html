@@ -14,5 +14,22 @@
 
 
 <ion-content padding>
-    <agm-map [latitude]="lat" [longitude]="lng"></agm-map>
+    <agm-map 
+    [latitude]="lat" 
+    [longitude]="lng">
+
+        <agm-marker 
+        *ngFor="let m of jobs; let i = index"
+        (markerClick)="clickedMarker(m.name, i)"
+        [latitude]="m.latitude"
+        [longitude]="m.longitude"
+        [markerDraggable]="m.draggable"
+        (dragEnd)="markerDragEnd(m, $event)">
+        
+      <agm-info-window>
+        <strong>{{m.name}}</strong>
+      </agm-info-window>
+      
+    </agm-marker>
+    </agm-map>
 </ion-content>
