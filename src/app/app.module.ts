@@ -10,6 +10,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { ListPage } from '../pages/list/list';
 import { MapPage } from '../pages/map/map';
+import { AddJobPage } from '../pages/add-job/add-job';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -26,6 +27,7 @@ import { Geolocation } from '@ionic-native/geolocation';
     HomePage,
     ListPage,
     MapPage,
+    AddJobPage,
     TabsPage
   ],
   imports: [
@@ -34,7 +36,10 @@ import { Geolocation } from '@ionic-native/geolocation';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCJA8Js3Fn74kZmuubyHTYg1MI3QJC20I0'
     }),
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp, {
+      // Tabs config
+      tabsHideOnSubPages: true,
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -44,6 +49,7 @@ import { Geolocation } from '@ionic-native/geolocation';
     HomePage,
     ListPage,
     MapPage,
+    AddJobPage,
     TabsPage
   ],
   providers: [
